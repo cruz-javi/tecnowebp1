@@ -1,0 +1,10 @@
+config.properties
+target/
+logs/
+fotos/
+*.log
+*.class
+.idea/
+.vscode/
+*.iml
+.DS_Store

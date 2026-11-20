@@ -1,0 +1,43 @@
+# Copie este archivo como config.properties y complete las credenciales.
+# config.properties NO se sube a GitHub (está en .gitignore).
+
+# --- Correo (servidor de la cátedra) ---
+pop3.host=mail.tecnoweb.org.bo
+pop3.port=110
+pop3.ssl=false
+smtp.host=mail.tecnoweb.org.bo
+smtp.port=25
+# Solo si el servidor SMTP exige AUTH LOGIN:
+smtp.user=
+smtp.password=
+mail.user=grupo06sa
+mail.password=CAMBIAR
+mail.from=grupo06sa@tecnoweb.org.bo
+
+# --- Base de datos ---
+db.url=jdbc:postgresql://db.tecnoweb.org.bo:5432/db_grupo06sa
+db.user=grupo06sa
+db.password=CAMBIAR
+
+# --- Daemon ---
+poll.interval.ms=10000
+poll.max.mensajes=20
+# true: el perfil PROPIETARIO debe enviar AUTH["contraseña"] (sesión de 30 min)
+auth.requerida=true
+log.dir=logs
+
+# --- Fotos de usuario (carpeta publicada en el servidor web) ---
+fotos.dir=/home/grupo06sa/public_html/fotos
+fotos.url=https://www.tecnoweb.org.bo/inf513/grupo06sa/fotos
+
+# --- Servidor SIS (vacío = las sincronizaciones quedan PENDIENTE) ---
+sis.url=
+sis.token=
+sis.max.intentos=3
+
+# --- Propietario semilla (lo crea "App init" si no existe) ---
+owner.ci=ADMIN-001
+owner.nombres=Propietario
+owner.apellidos=UNEXO
+owner.correo=correo_del_propietario@gmail.com
+owner.password=CAMBIAR

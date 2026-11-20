@@ -1,0 +1,69 @@
+# Guion de demostración: "correo_remitente | ASUNTO"
+# Ejecutar: java -cp target/unexo.jar unexo.App guion docs/guion_demo.txt
+# (Reemplace admin@unexo.bo por el correo del propietario semilla de config.properties.)
+
+# --- sin autenticación / errores de sintaxis ---
+admin@unexo.bo | LISCUR["*"]
+admin@unexo.bo | AUTH["admin123"]
+admin@unexo.bo | LISPER["*"
+admin@unexo.bo | NOEXIS["x"]
+admin@unexo.bo | INSCUR["TW-101","x"]
+
+# --- CU3 catálogo y oferta ---
+admin@unexo.bo | INSCAT["Tecnología","Cursos de desarrollo web y bases de datos"]
+admin@unexo.bo |   inscur [ "TW-101" , "Tecnología Web Básica", "HTML, CSS y \"JavaScript\"", "40", "Ninguno", "1" ]
+admin@unexo.bo | INSOFE["TW-101","900","BOB","10","3","2026-01-01","2027-12-31"]
+admin@unexo.bo | GETCUR["TW-101"]
+
+# --- CU1 usuarios ---
+admin@unexo.bo | INSUSU["7894561","Ana","Pérez Rojas","71000001","Av. Busch 123","F","2001-05-10","ana@correo.com","ana12345","CLIENTE"]
+admin@unexo.bo | INSUSU["5550001","Luis","Gómez","71000002","Calle 1","M","1985-02-01","luis@correo.com","luis1234","CLIENTE"]
+nuevo@correo.com | REGCLI["8000001","Marta","Suárez","71000003","F","2003-09-15","marta123"]
+nuevo@correo.com | INSCLI["8000001","ESTUDIANTE","UAGRM","-"]
+admin@unexo.bo | LISUSU["CLIENTE"]
+
+# --- CU2 perfiles ---
+admin@unexo.bo | INSPRF["SECRETARIA","Atención de matrículas"]
+admin@unexo.bo | ASGPRM["3","INSMAT"]
+admin@unexo.bo | LISPRF["*"]
+
+# --- CU4 cohortes y grupos ---
+admin@unexo.bo | INSINS["5550001","Desarrollo web"]
+admin@unexo.bo | INSCOH["TW101-2026-2","TW-101","2026-2","2026-12-01","2027-01-31","2"]
+admin@unexo.bo | INSGRU["G-TW101-A","TW101-2026-2","1","PRESENCIAL","2"]
+admin@unexo.bo | INSGRU["G-TW101-B","TW101-2026-2","1","VIRTUAL","30"]
+
+# --- CU5 logística ---
+admin@unexo.bo | INSAUL["Aula 2","Módulo 236, piso 2","35"]
+admin@unexo.bo | INSHOR["G-TW101-A","LUNES","19:00","21:00","PRESENCIAL","1","-","-"]
+admin@unexo.bo | INSHOR["G-TW101-B","LUNES","20:00","22:00","PRESENCIAL","1","-","-"]
+admin@unexo.bo | INSHOR["G-TW101-B","MARTES","19:00","21:00","VIRTUAL","-","Meet","https://meet.google.com/abc-defg-hij"]
+admin@unexo.bo | ABRGRU["G-TW101-A"]
+admin@unexo.bo | ABRGRU["G-TW101-B"]
+ana@correo.com | LISHOR["G-TW101-A"]
+
+# --- CU6 matrículas ---
+ana@correo.com | INSMAT["7894561","G-TW101-A","CUOTAS","6"]
+ana@correo.com | INSMAT["7894561","G-TW101-A","CUOTAS","3"]
+nuevo@correo.com | INSMAT["8000001","G-TW101-A","CONTADO","1"]
+admin@unexo.bo | INSMAT["5550001","G-TW101-A","CONTADO","1"]
+ana@correo.com | INSMAT["8000001","G-TW101-B","CONTADO","1"]
+admin@unexo.bo | PAGCUO["MAT-0001","2"]
+admin@unexo.bo | PAGCUO["MAT-0001","1"]
+ana@correo.com | GETMAT["MAT-0001"]
+
+# --- CU7 estados y SIS ---
+admin@unexo.bo | UPDEST["MAT-0002","RETIRADO","prueba"]
+admin@unexo.bo | UPDEST["MAT-0002","ANULADO","El estudiante desistió"]
+admin@unexo.bo | UPDEST["MAT-0003","PREINSCRITO","Se liberó un cupo"]
+admin@unexo.bo | CAMGRU["MAT-0003","G-TW101-B"]
+ana@correo.com | HISEST["MAT-0001"]
+admin@unexo.bo | LISSIS["*"]
+
+# --- CU8 reportes ---
+admin@unexo.bo | REPMAT["2026-01-01","2027-12-31"]
+admin@unexo.bo | REPING["2026-01-01","2027-12-31"]
+admin@unexo.bo | REPGRU["*"]
+admin@unexo.bo | ESTGEN["*"]
+ana@correo.com | REPING["2026-01-01","2027-12-31"]
+ana@correo.com | HELP["*"]
