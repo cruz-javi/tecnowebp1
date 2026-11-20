@@ -19,6 +19,13 @@ case "${1:-daemon}" in
     pkill -f "unexo.jar" && echo "Daemon detenido." || echo "No estaba en ejecución."
     ;;
   daemon)
+    # Evita arrancar instancias duplicadas (varios daemons leen el mismo buzón
+    # y procesarían cada correo varias veces).
+    if pgrep -f "unexo.jar" > /dev/null; then
+      echo "El MailDaemon YA está en ejecución (PID $(pgrep -f 'unexo.jar' | tr '\n' ' '))."
+      echo "Si quieres reiniciarlo, ejecuta primero: $0 stop"
+      exit 0
+    fi
     mkdir -p logs
     nohup java $OPTS -jar "$JAR" >> logs/daemon.out 2>&1 &
     echo "MailDaemon iniciado (PID $!). Logs en logs/access.log y logs/error.log"
